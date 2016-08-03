@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="angular.js@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-app="myApp">
+    <h1>Pascal Triangle in AngularJS</h1>
+    <div ng-controller="myController as vm">
+      <form name="myForm" novalidate>
+        <input ng-change="vm.createPascalTriangle(vm.formData.rows, myForm)" ng-pattern="/^\d+$/"  name="row" type="text" ng-model="vm.formData.rows" placeholder="Put number of rows">
+        <div ng-if="myForm.row.$dirty">
+          <p ng-if="myForm.row.$error.pattern">Please put numbers</p>
+        </div>
+      </form>
+      <div>
+      <p>Pascal Structures</p>
+      <ul>
+        <li ng-repeat="item in vm.pascalTriangle" ng-class="{'red': vm.classArray[$index] == 0, 'blue': vm.classArray[$index] == 1, 'orange': vm.classArray[$index] == 2, 'green': vm.classArray[$index] == 3}">{{item}}</li>
+      </ul>
+    </div>
+    </div>
+
+  </body>
+
+
+</html>
