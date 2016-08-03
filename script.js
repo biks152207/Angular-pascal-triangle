@@ -3,13 +3,16 @@
 (function(){
   'use strict';
   // Constructor function for myController
-  function Controller($scope){
+  function Controller($scope, localStorageService){
     var vm = this;
     // Form object
     vm.formData = {};
 
-    // Array to hold pascal data
-    vm.pascalTriangle = [];
+    // Getting pascal data from local storage
+    var pascalTriangle = localStorageService.get('pascalTriangle');
+    
+    pascalTriangle ? vm.pascalTriangle = pascalTriangle : vm.pascalTriangle = [];
+
     // Array to hold repeating number from 0-3 based on pascal Triangle length
     vm.classArray = [];
 
@@ -20,7 +23,7 @@
       if (form.$valid){
         var pascalTriangle = [];
         for (var i = 0; i < numRows; i++) {
-          
+
           pascalTriangle[i] = new Array(i+1);
 
           for (var j = 0; j < i+1; j++) {
@@ -34,6 +37,7 @@
           }
         }
         vm.pascalTriangle = pascalTriangle
+        localStorageService.set('pascalTriangle',vm.pascalTriangle);
       }
     }
 
@@ -56,9 +60,10 @@
     });
 
   }
-  angular.module('myApp', [])
+  angular.module('myApp', ['LocalStorageModule'])
     .controller('myController', [
       '$scope',
+      'localStorageService',
       Controller
     ])
 
