@@ -21,7 +21,7 @@
       <div>
       <p>Pascal Structures</p>
       <ul>
-        <li ng-repeat="item in vm.pascalTriangle" ng-class="{'red': vm.classArray[$index] == 0, 'blue': vm.classArray[$index] == 1, 'orange': vm.classArray[$index] == 2, 'green': vm.classArray[$index] == 3}">{{item}}</li>
+        <li ng-repeat="item in vm.pascalTriangle" ng-class="{'red': vm.classArray[$index] == 0, 'blue': vm.classArray[$index] == 1, 'orange': vm.classArray[$index] == 2, 'green': vm.classArray[$index] == 3}">{{item.join(',')}}</li>
       </ul>
     </div>
     </div>
